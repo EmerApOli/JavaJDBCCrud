@@ -24,9 +24,9 @@ public class usuarioDAO {
 	public void  Salvar(Usuario usuario) throws SQLException {
 		String sql = "insert into usuario (id, nome, email) values(?,?,?)";
 		PreparedStatement insert = connection.prepareStatement(sql);
-		insert.setLong(1, 1);
-		insert.setString(2,"Emerson");
-		insert.setString(3, "emerson@gamil");
+		insert.setLong(1, 2);
+		insert.setString(2,"Carlos");
+		insert.setString(3, "carlos@gamil");
 		insert.execute();
 		connection.commit();
 		
@@ -54,6 +54,40 @@ public class usuarioDAO {
 		 return list;
 		}
 	
+	//buscar nao retorna lista apenas objeto
+	
+	public Usuario buscarusaurio(Long id) throws SQLException{
+		Usuario retorno = new Usuario();
+		String sql =  "select * from usuario where id = " + id;
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet  resultado = statement.executeQuery();
+		
+		while (resultado.next()) {
+			
+			// Usuario usuario = new Usuario();
+			 retorno.setId(resultado.getLong("id"));
+			 retorno.setNome(resultado.getString("nome"));
+			 retorno.setEmail(resultado.getString("email"));
+			
+			 
+			 
+		}
+		
+		 return retorno;
+		}
+	
+	public void atualizar(Usuario usuario) throws SQLException {
+		
+		String sql = "update usuario set nome = ? where id = " + usuario.getId();
+			PreparedStatement  statement = connection.prepareStatement(sql);
+		statement.setString(1, usuario.getNome());
+		statement.execute();
+		connection.commit();
+		
+		
+		
+		
+	}
 	
 	
 }

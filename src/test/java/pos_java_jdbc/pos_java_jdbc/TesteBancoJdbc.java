@@ -23,7 +23,55 @@ public class TesteBancoJdbc {
 		
 	}
 	
+	@Test
+	public void initLista() {
+		
+		 usuarioDAO usrdao = new usuarioDAO();
+		 try {
+			 
+			 List<Usuario> list = usrdao.listarusuario();
+			 
+			 for (Usuario usuario: list) {
+				 System.out.println(usuario);
+				 System.out.println("----------------");
+			 }
+			 
+			 
+		 }catch (Exception e) {
+			// TODO: handle exception
+			 e.printStackTrace();
+		}
+		 
+	}
+	@Test
+	public void initBuscar() {
+		
+		usuarioDAO usrdao = new usuarioDAO();
+		
+		try {
+			
+			Usuario usr =  usrdao.buscarusaurio(2L);
+			System.out.println(usr);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void initatualizar() {
+		try {
+		 usuarioDAO usrdao = new usuarioDAO();
+			 Usuario obj = usrdao.buscarusaurio(1L);
+		 obj.setNome("zoio");
+		 usrdao.atualizar(obj);
+		 
+	}
+		catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 	
 	
 
-}
+}}
